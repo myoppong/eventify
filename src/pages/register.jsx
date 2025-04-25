@@ -12,6 +12,8 @@ function Register() {
   const password = watch('password');
 
   const onSubmit = async (data) => {
+
+    console.log("form payload:", data);
     try {
       await api.post('/register', data);
       navigate('/login');
