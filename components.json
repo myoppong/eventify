@@ -1,0 +1,11 @@
+{
+  "componentPath": "src/components/ui",
+  "utilsPath": "src/lib/utils",
+  "stylesPath": "src/index.css",
+  "tailwind": true,
+  "ts": true,
+  "aliases": {
+    "@/components": "./src/components",
+    "@/lib": "./src/lib"
+  }
+}
