@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const api = axios.create({
   baseURL: 'https://eventkit.onrender.com',
-  withCredentials: true, // ✅ correct location
+  withCredentials: true, 
   headers: {
     'Content-Type': 'application/json',
   },

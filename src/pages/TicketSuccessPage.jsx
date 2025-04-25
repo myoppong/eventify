@@ -11,7 +11,7 @@ export default function TicketSuccessPage() {
   useEffect(() => {
     const fetchTicket = async () => {
       try {
-        const { data } = await api.get(`/my-tickets-after-payment?reference=${reference}`);
+        const { data } = await api.get(`/attendee/tickets/after-payment?reference=${reference}`);
         if (data.tickets?.length > 0) {
           setTicket(data.tickets[0]); // take the most recent ticket
         }
@@ -30,7 +30,7 @@ export default function TicketSuccessPage() {
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white shadow rounded-lg">
-      <h1 className="text-2xl font-bold mb-4">🎟️ Your Ticket is Ready!</h1>
+      <h1 className="text-2xl font-bold mb-4"> Your Ticket is Ready!</h1>
       <p><strong>Event:</strong> {ticket.event}</p>
       <p><strong>Type:</strong> {ticket.ticketType}</p>
       <p><strong>Date:</strong> {new Date(ticket.date).toLocaleString()}</p>
