@@ -1,13 +1,12 @@
-export default function SelectField({ label, options, error, name, id, ...rest }) {
-  const inputId = id || name;
+export default function SelectField({ label, options, error, id, ...registerProps }) {
+  const inputId = id || registerProps.name;
 
   return (
     <div>
       <label htmlFor={inputId} className="block mb-1">{label}</label>
       <select
         id={inputId}
-        name={name}
-        {...rest}
+        {...registerProps}
         className="w-full p-2 border rounded"
       >
         <option value="">Select a role</option>
