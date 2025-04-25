@@ -1,6 +1,6 @@
 // src/components/EventCard.jsx
 import React from 'react';
-import { Link } from 'react-router-dom';
+
 
 export default function EventCard({
   bannerUrl = 'https://via.placeholder.com/400x300?text=No+Image',

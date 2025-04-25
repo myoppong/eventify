@@ -1,6 +1,6 @@
 // src/components/NavBar.jsx
 import React from 'react';
-import { Navbar, Dropdown, Button } from 'flowbite-react';
+import { Navbar, Dropdown } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 import { isLoggedIn } from '../utils/authHelpers';
 import LogoutButton from './ui/LogoutButton';

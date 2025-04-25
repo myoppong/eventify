@@ -8,7 +8,7 @@ import AppFooter from './Footer';
 import Breadcrumbs from './BreadCrumbs';
 
 export default function Layout() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [ setSidebarOpen] = useState(false);
   const { pathname } = useLocation();
 
   const showSidebar = pathname === '/organizer' || pathname === '/dashboard';

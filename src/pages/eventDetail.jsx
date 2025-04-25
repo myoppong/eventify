@@ -1,5 +1,5 @@
 // src/pages/organizer/EventDetails.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { Pagination } from 'flowbite-react';
 import Loader from '../components/ui/Loader';
@@ -16,7 +16,10 @@ export default function EventDetail() {
   const [loading, setLoading] = useState(true);
   const [loadingAttendees, setLoadingAttendees] = useState(true);
 
-  const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
+  // Memoizing the headers object
+  const headers = useMemo(() => ({
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+  }), []); // Empty array means the headers will only be recalculated when localStorage changes
 
   // Fetch event overview
   useEffect(() => {
@@ -27,7 +30,7 @@ export default function EventDetail() {
       })
       .catch(() => toast.error('Failed to load event info'))
       .finally(() => setLoading(false));
-  }, [eventId]);
+  }, [eventId, headers]); // 'headers' is now memoized, so it won't change unless localStorage changes
 
   // Fetch attendees on page change
   useEffect(() => {
@@ -37,12 +40,13 @@ export default function EventDetail() {
       headers,
     })
       .then(res => {
-        setAttendees(res.data.attendees);
-        setTotalPages(Math.ceil(res.data.total / res.data.perPage));
+        const { attendees, total, perPage } = res.data; // Destructure response data
+        setAttendees(attendees);
+        setTotalPages(Math.ceil(total / perPage));
       })
       .catch(() => toast.error('Failed to load attendees'))
       .finally(() => setLoadingAttendees(false));
-  }, [eventId, page, perPage]);
+  }, [eventId, page, perPage, headers]); // 'headers' is memoized
 
   if (loading) return <Loader />;
 
