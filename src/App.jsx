@@ -24,7 +24,7 @@ export default function App() {
         {/* Auth (no Layout) */}
         <Route path="/login"    element={<Login />} />
         <Route path="/register" element={<Register />} />
-         <Route path='about' element={<AboutUs />}/> 
+         <Route path='/about' element={<AboutUs />}/> 
 
         {/* All other routes get the Layout */}
         <Route element={<Layout />}>
