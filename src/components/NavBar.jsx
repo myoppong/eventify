@@ -1,9 +1,10 @@
 // src/components/NavBar.jsx
 import React from 'react';
-import { Navbar, Dropdown } from 'flowbite-react';
+import { Navbar } from 'flowbite-react';
 import { Link } from 'react-router-dom';
-import { isLoggedIn } from '../utils/authHelpers';
-import LogoutButton from './ui/LogoutButton';
+// import { isLoggedIn } from '../utils/authHelpers';
+// import LogoutButton from './ui/LogoutButton';
+import AccountDropdown from './ui/AccountDropdown';
 
 export default function AppNavbar() {
   return (
@@ -27,7 +28,7 @@ export default function AppNavbar() {
       {/* Right side: Create Event & Mobile Toggle */}
       <div className="flex items-center md:order-2 space-x-4">
         <Link
-          to="/create-event"
+          to="/organizer/create"
           className="hidden md:inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
         >
           + Create Event
@@ -51,22 +52,8 @@ export default function AppNavbar() {
         </Navbar.Link>
 
         {/* Account Dropdown */}
-        <Dropdown label="Account" arrowIcon={false} inline={true} className="text-gray-700 hover:text-indigo-600">
-          <Dropdown.Header>
-            <span className="block text-sm">Signed in as</span>
-            <span className="block text-sm font-medium truncate">
-              {isLoggedIn() ? localStorage.getItem('username') : 'Guest'}
-            </span>
-          </Dropdown.Header>
-          <Dropdown.Item as={Link} to="/profile">
-            Profile
-          </Dropdown.Item>
-          {isLoggedIn() && (
-            <Dropdown.Item>
-              <LogoutButton />
-            </Dropdown.Item>
-          )}
-        </Dropdown>
+        <AccountDropdown />
+
       </Navbar.Collapse>
     </Navbar>
   );
