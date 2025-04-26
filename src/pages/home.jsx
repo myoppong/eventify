@@ -1,6 +1,7 @@
 // src/pages/home.jsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 import BannerCarousel from "../components/BannerCarousel";
 import CategoryCarousel from "../components/CategoryCarousel";
 import CategoryCard from "../components/ui/CategoryCard";
@@ -81,9 +82,16 @@ export default function Home() {
                   <p className="text-white text-md md:text-lg mb-4 max-w-xl">
                     Explore music festivals, business conferences, workshops, and more happening near you.
                   </p>
-                  <button className="bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-gray-200 transition">
-                    Explore Now
-                  </button>
+
+
+                  <Link
+                    to="/events"
+                   className="bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-gray-200 transition inline-block"
+                 >
+               Explore Now
+                  </Link>
+
+
                 </div>
               </div>
             ))
