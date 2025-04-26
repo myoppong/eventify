@@ -23,3 +23,29 @@
     }
   }
   
+  /* src/index.css */
+
+@media print {
+    /* hide everything */
+    body * {
+      display: none !important;
+    }
+  
+    /* show only our marked element and its children */
+    .only-print,
+    .only-print * {
+      display: block !important;
+    }
+  
+    /* reset its positioning so it prints normally on page 1 */
+    .only-print {
+      position: static !important;
+      top: auto !important;
+      left: auto !important;
+      width: auto !important;
+      
+      /* keep it from splitting across pages */
+      page-break-inside: avoid;
+    }
+  }
+  

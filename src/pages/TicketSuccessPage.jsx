@@ -39,7 +39,7 @@ export default function TicketSuccessPage() {
       <p><strong>Reference:</strong> {ticket.reference}</p>
 
       <div className="mt-4">
-        <img src={ticket.qrCode} alt="QR Code" className="w-40 h-40" />
+        <img src={ticket.qrCode} alt="QR Code" className="w-40 h-50 only-print-image" />
       </div>
 
       <button
