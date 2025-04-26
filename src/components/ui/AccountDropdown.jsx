@@ -1,24 +1,25 @@
-// src/components/AccountDropdown.jsx
+// src/components/ui/AccountDropdown.jsx
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Dropdown, Avatar, Button } from 'flowbite-react';
 import LogoutButton from './LogoutButton';
+import { getUserFromToken } from '../../utils/authHelpers';
 
 export default function AccountDropdown() {
   const navigate = useNavigate();
-  const username = localStorage.getItem('username');
-  const role = localStorage.getItem('role'); // 'attendee' or 'organizer'
-  const loggedIn = Boolean(username);
+  const user = getUserFromToken();              // decode JWT
+  const loggedIn = Boolean(user);
 
   // Derive initials for avatar (e.g. "Jane Doe" → "JD")
-  const initials = username
-    ? username
+  const initials = user?.username
+    ? user.username
         .split(' ')
         .map(n => n[0]?.toUpperCase())
         .join('')
         .slice(0, 2)
     : '';
 
+  // Not logged in: show Sign In / Sign Up
   if (!loggedIn) {
     return (
       <div className="flex items-center space-x-2">
@@ -30,8 +31,8 @@ export default function AccountDropdown() {
           Sign In
         </Button>
         <Button
-          onClick={() => navigate('/signup')}
           size="sm"
+          onClick={() => navigate('/signup')}
         >
           Sign Up
         </Button>
@@ -39,13 +40,14 @@ export default function AccountDropdown() {
     );
   }
 
+  // Logged-in: show avatar dropdown
   return (
     <Dropdown
       arrowIcon={false}
       inline={true}
       label={
         <Avatar
-          rounded={true}
+          rounded
           placeholderInitials={initials}
           size="sm"
         />
@@ -54,7 +56,7 @@ export default function AccountDropdown() {
       <Dropdown.Header>
         <span className="block text-sm">Signed in as</span>
         <span className="block text-sm font-semibold truncate">
-          {username}
+          {user.username}
         </span>
       </Dropdown.Header>
 
@@ -62,13 +64,13 @@ export default function AccountDropdown() {
         Profile
       </Dropdown.Item>
 
-      {role === 'attendee' && (
+      {user.role === 'attendee' && (
         <Dropdown.Item as={Link} to="/my-tickets">
           My Tickets
         </Dropdown.Item>
       )}
 
-      {role === 'organizer' && (
+      {user.role === 'organizer' && (
         <Dropdown.Item as={Link} to="/organizer/dashboard">
           My Events
         </Dropdown.Item>
