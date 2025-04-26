@@ -14,6 +14,8 @@ import RequireAuth         from './components/requireAuth';
 import OrganizerDashboard  from './pages/organizer/dashboard';
 import EventDetail         from './pages/eventDetail';
 import CreateEvent         from './pages/organizer/createEvent';
+import AboutUs from './pages/AboutUs';
+
 
 export default function App() {
   return (
@@ -22,6 +24,7 @@ export default function App() {
         {/* Auth (no Layout) */}
         <Route path="/login"    element={<Login />} />
         <Route path="/register" element={<Register />} />
+         <Route path='about' element={<AboutUs />}/> 
 
         {/* All other routes get the Layout */}
         <Route element={<Layout />}>
@@ -29,7 +32,7 @@ export default function App() {
           <Route index                  element={<Home />} />
           <Route path="events"         element={<EventsPage />} />
           <Route path="events/:id"     element={<EventDetailPage />} />
-        
+         
 
 
           <Route
@@ -48,9 +51,6 @@ export default function App() {
     </RequireAuth>
   }
 />
-
-
-
           <Route path="ticket-success" element={<TicketSuccessPage />} />
           
           <Route path="not-authorized" element={<NotAuthorized />} />
