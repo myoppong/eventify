@@ -2,26 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@media print {
-    /* hide everything */
-    body * {
-      visibility: hidden !important;
-    }
-  
-    /* but show only our marked element */
-    .only-print,
-    .only-print * {
-      visibility: visible !important;
-    }
-  
-    /* position it at top-left */
-    .only-print {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-    }
-  }
+
   
   /* src/index.css */
 
